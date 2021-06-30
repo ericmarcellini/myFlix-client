@@ -1,2 +1,6 @@
+dist
 node_modules
 .cache
+.parcel-cache
+*.log
+.DS_Store
