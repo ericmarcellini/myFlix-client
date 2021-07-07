@@ -11,3 +11,5 @@ export class MainView extends React.Component {
         );
     }
 }
+
+export default MainView;
