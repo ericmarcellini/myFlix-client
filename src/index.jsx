@@ -9,13 +9,11 @@ import './index.scss';
 class MyFlixApplication extends React.Component {
     render() {
       return (
-        <div className="my-flix">
-          <div>Good morning</div>
-        </div>
+        <MainView />
       );
     }
   }
-  
+
 // finds the root of your app
 const container = document.getElementsByClassName('app-container')[0];
 
