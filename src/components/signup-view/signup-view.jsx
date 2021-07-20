@@ -69,7 +69,7 @@ const handleSubmit = (e) => {
   )
 } 
 
-RegistrationView.propTypes = {
+SignupView.propTypes = {
     register: PropTypes.shape({
       Username: PropTypes.string.isRequired,
       Password: PropTypes.string.isRequired,

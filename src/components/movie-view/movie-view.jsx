@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 
 export class MovieView extends React.Component {
 
@@ -31,7 +32,7 @@ export class MovieView extends React.Component {
                     <span className="label">Description: </span>
                     <span className="value">{movie.Description}</span>
                 </div>
-                <button onClick={()=> {onBackClick(null);}}>Back!</button>
+                <Button onClick={()=> {onBackClick(null);}}>Back!</Button>
                 
                 <Link to={`/directors/${movie.Director.Name}`}>
                  <Button variant='link'>Director</Button>
@@ -43,4 +44,22 @@ export class MovieView extends React.Component {
             </div>
         );
     }
+}
+
+MovieView.PropTypes = {
+    movie: PropTypes.shape({
+        imageUrl: PropTypes.string.isRequired,
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+
+        Director: PropType.shape({
+            Name: PropType.string.isRequired,
+            Birthday: PropType.string.isRequired // Unsure if it was Born or Birthday
+        }),
+
+        Genre: PropTypes.shape({
+            Name: PropTypes.string.isRequired
+        }),
+
+    })
 }
