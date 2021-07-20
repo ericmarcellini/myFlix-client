@@ -135,8 +135,8 @@ export class MainView extends React.Component {
             return <Col>
             <SignupView />
             </Col>
-          }}
-          </Router>
+          }} />
+          </Router> 
     );
   }
 }
