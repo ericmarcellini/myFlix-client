@@ -44,3 +44,10 @@ export function LoginView(props) {
       </Form>
       );
 }
+
+LoginView.propTypes = {
+  user: PropTypes.shape ({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+  })
+}

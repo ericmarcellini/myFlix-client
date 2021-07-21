@@ -32,7 +32,7 @@ const handleSubmit = (e) => {
           });
 
         console.log(username, password, email, birthdate);
-        props.onRegister(username, password, email, birthdate);
+        props.onSignup(username, password, email, birthdate);
     };
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
@@ -69,8 +69,8 @@ const handleSubmit = (e) => {
   )
 } 
 
-RegistrationView.propTypes = {
-    register: PropTypes.shape({
+SignupView.propTypes = {
+    signup: PropTypes.shape({
       Username: PropTypes.string.isRequired,
       Password: PropTypes.string.isRequired,
       Email: PropTypes.string.isRequired,
