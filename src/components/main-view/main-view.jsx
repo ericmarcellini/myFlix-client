@@ -98,10 +98,10 @@ export class MainView extends React.Component {
     });
   }
 
-  onRegister(register) {
-    console.log(register);
+  onSignup(signup) {
+    console.log(signup);
     this.setState({
-      register,
+      signup,
     });
   }
 
