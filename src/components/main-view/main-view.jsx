@@ -11,7 +11,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
-import { DirectorView} from '../director-view/director-view';
+import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
@@ -22,15 +22,19 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null
+      selectedMovie: null,
+      user: null,
+      userData: null
     };
   }
 
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
+    let userToken = localStorage.getItem('user');
     if (accessToken !== null){
       this.setState({
-        user: localStorage.getItem('user')
+        user: localStorage.getItem('user'),
+        token: localStorage.getItem('token')
       });
       this.getMovies(accessToken);
     }
@@ -113,7 +117,7 @@ export class MainView extends React.Component {
       <Col>
         <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
       </Col>
-    </Row>
+    </Row> 
 
     return (
       <Router>
@@ -130,7 +134,7 @@ export class MainView extends React.Component {
             }} />
 
           <Route path="/signup" render={() => {
-            if (user) return <Redirect to='/'/>
+            //if (user) return <Redirect to='/'/>
             return <Col>
             <SignupView />
             </Col>
