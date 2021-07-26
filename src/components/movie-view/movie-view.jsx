@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 
+import { Link } from "react-router-dom";
+
 export class MovieView extends React.Component {
 
     keypressCallback(event){
@@ -46,31 +48,21 @@ export class MovieView extends React.Component {
     }
 }
 
-/* MovieView.PropTypes = {
+
+MovieView.propTypes = {
     movie: PropTypes.shape({
-        imageUrl: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
         Title: PropTypes.string.isRequired,
         Description: PropTypes.string.isRequired,
 
-        Director: PropType.shape({
+        /* Director: PropType.shape({
             Name: PropType.string.isRequired,
-            Birthday: PropType.string.isRequired // Unsure if it was Born or Birthday
+            Birthday: PropType.string.isRequired, // Unsure if it was Born or Birthday
         }),
 
         Genre: PropTypes.shape({
             Name: PropTypes.string.isRequired
-        }),
-
-    })
-} */
-
-MovieView.propTypes = {
-    movie: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      imageURL: PropTypes.string.isRequired
-    }).isRequired,
-    user: PropTypes.string.isRequired,
-    addToFavorties: PropTypes.func,
-    onBackClick: PropTypes.func.isRequired
+        }), */
+    }),
 } 
+ 
