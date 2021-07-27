@@ -21,6 +21,8 @@ export class ProfileView extends React.Component{
         this.getUser(accessToken);
     }
 
+
+
     // gets user 
     getUser(token) {
         const username = localStorage.getItem('user');
@@ -38,12 +40,28 @@ export class ProfileView extends React.Component{
           });
       }
 
+    // delete user
+    handleDeleteUser(e){
+        const username = localStorage.getItem('user'); 
+        const token = localStorage.getItem('token');
+        axios.delete(`https://myflixdb1112.herokuapp.com/users/${username}`, {
+            headers: { Authorization: `Bearer ${token}`}
+        })
+        .then(() => {
+            alert('You have successfully deleted your account!');
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.open(`https://myflixdb1112.herokuapp.com/`);
+        })
+        .catch((e) => {
+            console.log(e),
+            console.log('something broke in handleDeleteUser');
+        });
+ }
+
 
     render(){
-        const { user, onBackClick } = this.props;
-        const { movies } = this.props;
-        const { FavoriteMovies } = this.props;
-
+        const { user, onBackClick, movies, FavoriteMovies } = this.props;
         return (
 
         )
