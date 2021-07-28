@@ -117,8 +117,19 @@ export class ProfileView extends React.Component{
     render(){
         const { user, onBackClick, movies, FavoriteMovies } = this.props;
         return (
+        <Container>    
+            /* User Info */
+        <Row>
+            <Col>
+            <p>Username: {`${this.props.username}`}</p>
+            <p>Email: {`${this.props.Email}`}</p>
+            <p>Birthday: {`${this.state.Birthday}`}</p>
+            <p>Favorite Movies: </p>
+            </Col>
+        </Row>
+            /* Favorite Movies */
             /* update form */
-        <Container>     
+             
             <h1> Update Form</h1>
         <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthdate)}>
             <Form.Group controlId="formGroupUsername">
@@ -147,12 +158,15 @@ export class ProfileView extends React.Component{
            </Form>
 
 
+
+
+
             /* delete user */
             <Button onClick={(e)=> this.handleDeleteUser(e)}>
                 Delete User
             </Button>
 
-           </Container>   
+        </Container>   
         )
     }
 }
