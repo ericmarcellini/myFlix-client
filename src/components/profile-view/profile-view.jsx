@@ -120,7 +120,7 @@ export class ProfileView extends React.Component{
             /* update form */
         <Container>     
             <h1> Update Form</h1>
-        <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthdate)}>
+        <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthdate)}>
             <Form.Group controlId="formGroupUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter your new username" value={username} onChange={e => this.setUsername(e.target.value)} required/>
