@@ -114,8 +114,19 @@ export class ProfileView extends React.Component{
         this.Birthdate = input;
     }
 
+    /* remove movie from favorite list*/
+    handleRemove(movie){        
+        const username = localStorage.getItem('user');
+        const token = localStorage.getItem('token')
+        axios.post(``,                                   /*Unsure if its post, unsure of actual address */
+        { headers: { Authorization: `Bearer ${token}`}}
+        ).then ((response) => {
+           console.log(response);
+    });
+    }
+
     render(){
-        const { user, onBackClick, movies, FavoriteMovies } = this.props;
+        const { username, Email, movies, Birthday ,FavoriteMovies } = this.props;
         return (
         <Container>    
             /* User Info */
@@ -128,8 +139,8 @@ export class ProfileView extends React.Component{
             </Col>
         </Row>
             /* Favorite Movies */
+
             /* update form */
-             
             <h1> Update Form</h1>
         <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthdate)}>
             <Form.Group controlId="formGroupUsername">
