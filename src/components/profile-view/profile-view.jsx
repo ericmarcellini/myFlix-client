@@ -118,6 +118,8 @@ export class ProfileView extends React.Component{
         const { user, onBackClick, movies, FavoriteMovies } = this.props;
         return (
             /* update form */
+        <Container>     
+            <h1> Update Form</h1>
         <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdate(e, this.Username, this.Password, this.Email, this.Birthdate)}>
             <Form.Group controlId="formGroupUsername">
                 <Form.Label>Username</Form.Label>
@@ -142,7 +144,15 @@ export class ProfileView extends React.Component{
                 <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => setBirthdate(e.target.value)} required />
             </Form.Group> 
             <Button type="submit"> Submit </Button>
-           </Form> 
+           </Form>
+
+
+            /* delete user */
+            <Button onClick={(e)=> this.handleDeleteUser(e)}>
+                Delete User
+            </Button>
+
+           </Container>   
         )
     }
 }
