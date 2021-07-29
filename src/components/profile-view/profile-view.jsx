@@ -3,6 +3,7 @@ import {Row, Col, Button, Container, Card, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 export class ProfileView extends React.Component{
     constructor() {
@@ -129,7 +130,7 @@ export class ProfileView extends React.Component{
 
     render(){
         const { username, Password, email, birthdate } = this.props;
-        const { FavoriteMovies, validated } = this.state
+        const { FavoriteMovies, validated } = this.state;
 
         return (
         <Container>    
@@ -173,19 +174,19 @@ export class ProfileView extends React.Component{
 
             <Form.Group controlId="formGroupPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="New Password" value={Password} onChange={e => setPassword(e.target.value)} required />
+                <Form.Control type="password" placeholder="New Password" value={Password} onChange={e => this.setPassword(e.target.value)} required />
                 <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="New Email" value={email} onChange={e => setEmail(e.target.value)} required />
+                <Form.Control type="email" placeholder="New Email" value={email} onChange={e => this.setEmail(e.target.value)} required />
                 <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupBirthdate">
                 <Form.Label>Birthdate</Form.Label>
-                <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => setBirthdate(e.target.value)} required />
+                <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => this.setBirthdate(e.target.value)} required />
             </Form.Group> 
             <Button type="submit"> Submit </Button>
            </Form>
