@@ -8,11 +8,12 @@ export class ProfileView extends React.Component{
     constructor() {
         super();
         this.state = {
-            username: null,
-            password: null,
-            email: null,
-            birthday: null,
-            Favorites: [],
+            Username: null,
+            Password: null,
+            Email: null,
+            Birthday: null,
+            FavoriteMovies: [],
+            validated: null,
         }
     }
 
@@ -127,21 +128,41 @@ export class ProfileView extends React.Component{
     }
 
     render(){
-        const { username, Email, movies, Birthday ,FavoriteMovies } = this.props;
+        const { username, Password, email, birthdate } = this.props;
+        const { FavoriteMovies, validated } = this.state
+
         return (
         <Container>    
-            /* User Info */
+
+            {/* user info */}
         <Row>
             <Col>
-            <p>Username: {`${this.props.username}`}</p>
-            <p>Email: {`${this.props.Email}`}</p>
-            <p>Birthday: {`${this.state.Birthday}`}</p>
-            <p>Favorite Movies: </p>
+                <p>Username: {`${this.props.username}`}</p>
+                <p>Email: {`${this.props.Email}`}</p>
+                <p>Birthday: {`${this.state.Birthday}`}</p>
+                <p>Favorite Movies: </p>
             </Col>
         </Row>
-            /* Favorite Movies */
 
-            /* update form */
+            {/* favorite movies */}
+        <Row>
+            {FavoriteMovies.map((movie)=> {
+                return (
+                    <Card>
+                        <Card.Img variant='top' src={movie.ImagePath}/>
+                            <Card.Body>
+                                <Link to={`/movies/${movie.Title}`}>
+                                <Card.Title>{movie.Title}</Card.Title>
+                                <Card.Text>{movie.Description}</Card.Text>
+                                </Link>
+                            <Button onClick={()=> this.handleRemove(movie)}>Delete from favorites</Button>
+                        </Card.Body>
+                    </Card>
+                    )
+                })}
+        </Row>
+
+            {/* update form */} 
             <h1> Update Form</h1>
         <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthdate)}>
             <Form.Group controlId="formGroupUsername">
@@ -152,8 +173,8 @@ export class ProfileView extends React.Component{
 
             <Form.Group controlId="formGroupPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="New Password" value={password} onChange={e => setPassword(e.target.value)} required />
-                <Form.Control.Feedback type="invalid">Please provide a valid password.</Form.Control.Feedback>
+                <Form.Control type="password" placeholder="New Password" value={Password} onChange={e => setPassword(e.target.value)} required />
+                <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupEmail">
@@ -169,11 +190,7 @@ export class ProfileView extends React.Component{
             <Button type="submit"> Submit </Button>
            </Form>
 
-
-
-
-
-            /* delete user */
+            {/* delete user */}
             <Button onClick={(e)=> this.handleDeleteUser(e)}>
                 Delete User
             </Button>
@@ -183,14 +200,14 @@ export class ProfileView extends React.Component{
 }
 
 ProfileView.propTypes = {
-    User: PropTypes.shape({
+    users: PropTypes.shape({
         Username: PropTypes.string.isRequired,
         Email: PropTypes.string.isRequired,
         Birthdate: PropTypes.string,
         FavoriteMovies: PropTypes.array,
-
-    })
-}
+    }),
+    movies: PropTypes.array
+};
 
 
 export default ProfileView;
