@@ -118,10 +118,11 @@ export class ProfileView extends React.Component{
     handleRemove(movie){        
         const username = localStorage.getItem('user');
         const token = localStorage.getItem('token')
-        axios.post(``,                                   /*Unsure if its post, unsure of actual address */
+        axios.delete(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${movie_id}`,                                  
         { headers: { Authorization: `Bearer ${token}`}}
         ).then ((response) => {
            console.log(response);
+           alert('Movie has been successfully removed from favorites.')
     });
     }
 
@@ -176,7 +177,6 @@ export class ProfileView extends React.Component{
             <Button onClick={(e)=> this.handleDeleteUser(e)}>
                 Delete User
             </Button>
-
         </Container>   
         )
     }
