@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -120,6 +121,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
+        <Row>
           <Route exact path="/" render={() => {
              if (!user) return <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
@@ -166,6 +168,7 @@ export class MainView extends React.Component {
               <ProfileView/>
             </Col>
           }} />
+          </Row>
           </Router> 
     );
   }
