@@ -15,6 +15,7 @@ import { SignupView } from '../signup-view/signup-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { NavbarView} from '../navbar-view/navbar-view';
 
 export class MainView extends React.Component {
 
@@ -121,6 +122,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
+        <NavbarView/>
         <Row>
           <Route exact path="/" render={() => {
              if (!user) return <Col>
