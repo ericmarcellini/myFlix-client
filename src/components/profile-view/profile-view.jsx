@@ -20,7 +20,9 @@ export class ProfileView extends React.Component{
 
     componentDidMount(){
         let accessToken = localStorage.getItem('token');
-        this.getUser(accessToken);
+        if (accessToken !== null){
+            this.getUser(accessToken);
+        }
     }
 
 
@@ -53,7 +55,7 @@ export class ProfileView extends React.Component{
             alert('You have successfully deleted your account!');
             localStorage.removeItem('user');
             localStorage.removeItem('token');
-            window.open(`https://myflixdb1112.herokuapp.com/`);
+            window.open(`localhost:1234`);
         })
         .catch((e) => {
             console.log(e),
@@ -131,7 +133,7 @@ export class ProfileView extends React.Component{
     render(){
         const { username, Password, email, birthdate } = this.props;
         const { FavoriteMovies, validated } = this.state;
-
+        
         return (
         <Container>    
 
