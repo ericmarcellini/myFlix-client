@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
@@ -111,7 +110,6 @@ export class MainView extends React.Component {
   }
 
   render() {
-    <button onClick={()=> { this.onLoggedOut() }} >Logout</button>
     const { movies, user } = this.state;
 
     if (!user) return <Row>
@@ -119,15 +117,16 @@ export class MainView extends React.Component {
         <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
       </Col>
     </Row> 
-
+  
     return (
       <Router>
         <NavbarView/>
+        <button onClick={() => { this.onLoggedOut() }}>Logout</button>
         <Row>
           <Route exact path="/" render={() => {
-             if (!user) return <Col>
-              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
+            if (!user) return <Col>
+               <LoginView onLoggedIn={user => this.onLoggedIn(user)} /> 
+            </Col> 
             if (movies.length === 0) return <div className="main-view" />;
             return movies.map(m => (
             <Col md={3} key={m._id}>
@@ -137,11 +136,11 @@ export class MainView extends React.Component {
             }} />
 
           <Route path="/signup" render={() => {
-            //if (user) return <Redirect to='/'/>
+            if (user) return <Redirect to="/" />
             return <Col>
             <SignupView />
-            </Col>
-            }} />
+          </Col>
+          }} />
 
           <Route path="/movies/:movieId" render={({ match, history }) => {
             if(!user) return <Redirect to="/" />
