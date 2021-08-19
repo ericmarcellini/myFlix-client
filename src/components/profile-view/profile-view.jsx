@@ -64,7 +64,7 @@ export class ProfileView extends React.Component{
  }
 
     // update user
-    handleUpdateUser(e){
+    handleUpdateUser = (e) => {
         this.setState({
             validated: null
         });
@@ -91,14 +91,14 @@ export class ProfileView extends React.Component{
             {headers: { Authorization: `Bearer ${token}` }}
         )
         .then((response) => {
-            const updatedData = response.updatedData;
+            const data = response.data;
             alert(user + " is updated!")
-            console.log(response.updatedData);
-            console.log(updatedData);
+            console.log(response.data);
+            console.log(data);
             console.log(user + " is updated");
         })
         .catch(function (error){
-            console.log(error.response.updatedData);
+            console.log(error.response.data);
         });
     }
 
