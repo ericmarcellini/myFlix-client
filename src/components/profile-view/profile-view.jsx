@@ -25,22 +25,23 @@ export class ProfileView extends React.Component{
         }
     }
 
-
-
     // gets user 
     getUser(token) {
         const username = localStorage.getItem('user');
         axios.get(`https://myflixdb1112.herokuapp.com/users/${username}`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` }
         })
-          .then((response) => {
+          .then(response => {
             this.setState({
               Username: response.data.Username,
               Password: response.data.Password,
               Email: response.data.Email,
-              Birthdate: response.data.Birthdate,
+              Birthday: response.data.Birthday,
               FavoriteMovies: response.data.FavoriteMovies,
             });
+          })
+          .catch(function (error) {
+            console.log(error);
           });
       }
 
@@ -140,7 +141,7 @@ export class ProfileView extends React.Component{
             {/* user info */}
         <Row>
             <Col>
-                <p>Username: {`${this.props.username}`}</p>
+                <p>Username: {`${this.props.Username}`}</p>
                 <p>Email: {`${this.props.Email}`}</p>
                 <p>Birthday: {`${this.state.Birthday}`}</p>
                 <p>Favorite Movies: </p>
