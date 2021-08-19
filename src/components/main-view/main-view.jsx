@@ -37,6 +37,7 @@ export class MainView extends React.Component {
         token: localStorage.getItem('token')
       });
       this.getMovies(accessToken);
+      this.getUserinfo(accessToken);
     }
   }
 
@@ -85,6 +86,22 @@ export class MainView extends React.Component {
       });   
   }
 
+  // gets specific users
+  getUserinfo(token){
+    axios.get('https://myflixdb1112.herokuapp.com/users/${username}', {
+      headers: { Authorization: `Beared ${token}`}
+    })
+
+    .then(response => {
+      this.setState({
+        users: response.data
+      });
+    })
+
+    .catch(function (error){
+      console.log(error);
+    });
+  }
   // gets all users
   getUsers(token){
     axios.get('https://myflixdb1112.herokuapp.com/users', {
