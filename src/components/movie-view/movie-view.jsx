@@ -18,6 +18,17 @@ export class MovieView extends React.Component {
         document.removeEventListener('keypress', this.keypressCallback);
     }
     
+    addFav(){
+        const token = localStorage.getItem('token');
+        const username = localStorage.getItem('user');
+
+        axios.post(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${this.props.movie._id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+    })
+        .then(response => {
+            console.log('Movie added to favorite list')
+        })
+    }
     render() {
         const { movie, onBackClick } = this.props;
 
@@ -37,12 +48,16 @@ export class MovieView extends React.Component {
                 <Button onClick={()=> {onBackClick(null);}}>Back!</Button>
                 
                 <Link to={`/directors/${movie.Director.Name}`}>
-                 <Button variant='link'>Director</Button>
+                 <Button variant='secondary'>Director</Button>
                 </Link>
 
                 <Link to ={`/genres/${movie.Genre.Name}`}>
-                 <Button variant='link'>Genre</Button>
+                 <Button variant='secondary'>Genre</Button>
                 </Link>
+
+                <Button variant='dark' onClick={(e)=> this.addFav(movie, e)}>
+                    Add to favorites
+                </Button>
             </div>
         );
     }
