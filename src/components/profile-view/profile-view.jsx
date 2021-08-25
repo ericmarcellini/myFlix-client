@@ -3,7 +3,6 @@ import {Row, Col, Button, Container, Card, Form, Nav, NavBar } from 'react-boots
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 export class ProfileView extends React.Component{
     constructor() {
@@ -120,51 +119,60 @@ export class ProfileView extends React.Component{
     }
 
     /* remove movie from favorite list*/
-    handleRemove(movie){        
+    handleRemove(){        
         const username = localStorage.getItem('user');
-        const token = localStorage.getItem('token')
-        axios.delete(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${movie_id}`,                                  
-        { headers: { Authorization: `Bearer ${token}`}}
+        const token = localStorage.getItem('token');
+
+        axios.delete(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${this.props.movie._id}`,{}, {                                  
+         headers: { Authorization: `Bearer ${token}`}}
         ).then ((response) => {
            console.log(response);
            alert('Movie has been successfully removed from favorites.')
-    });
+    })
+        .catch((e)=> {
+            console.log(e)
+        })
     }
 
+
     render(){
-        const { username, Password, email, birthdate } = this.props;
-        const { FavoriteMovies, validated } = this.state;
-        
+        const { username, Password, email, birthdate, movies} = this.props;
+        const { movie } = this.props;
+        const { Username, Email, Birthday} = this.props;
+        const { FavoriteMovies, validated } = this.state
+
         return (
         <Container>    
-
+            
             {/* user info */}
         <Row>
             <Col>
-                <p>Username: {`${this.props.Username}`}</p>
-                <p>Email: {`${this.props.Email}`}</p>
+                <p>Username: {`${this.Username}`}</p>
                 <p>Birthday: {`${this.state.Birthday}`}</p>
                 <p>Favorite Movies: </p>
             </Col>
         </Row>
 
             {/* favorite movies */}
-        <Row>
+            <Row>
             {FavoriteMovies.map((movie)=> {
                 return (
-                    <Card>
+                <div key={movie._id}>   
+                    <Card key={movie._id}>
                         <Card.Img variant='top' src={movie.ImagePath}/>
                             <Card.Body>
                                 <Link to={`/movies/${movie.Title}`}>
                                 <Card.Title>{movie.Title}</Card.Title>
                                 <Card.Text>{movie.Description}</Card.Text>
                                 </Link>
-                            <Button onClick={()=> this.handleRemove(movie)}>Delete from favorites</Button>
+                                <Button value ={movie._id}onClick={(e)=> this.handleRemove(movie, e)}>
+                                    Delete from favorites
+                                </Button>
                         </Card.Body>
                     </Card>
-                    )
-                })}
-        </Row>
+                </div>     
+            )})}
+        </Row>       
 
             {/* update form */} 
             <h1> Update Form</h1>
@@ -210,7 +218,7 @@ ProfileView.propTypes = {
         Birthdate: PropTypes.string,
         FavoriteMovies: PropTypes.array,
     }),
-    movies: PropTypes.array
+    movies: PropTypes.shape
 };
 
 
