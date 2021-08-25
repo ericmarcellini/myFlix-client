@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-
+import axios from 'axios';
 import { Link } from "react-router-dom";
 
 export class MovieView extends React.Component {
@@ -22,11 +22,12 @@ export class MovieView extends React.Component {
         const token = localStorage.getItem('token');
         const username = localStorage.getItem('user');
 
-        axios.post(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${this.props.movie._id}`, {
+        axios.post(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${this.props.movie._id}`,{}, {
           headers: { Authorization: `Bearer ${token}` }
     })
         .then(response => {
             console.log('Movie added to favorite list')
+            alert('Movie has been successfully added to favorites.')
         })
     }
     render() {
