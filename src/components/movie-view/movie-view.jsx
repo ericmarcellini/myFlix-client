@@ -18,6 +18,7 @@ export class MovieView extends React.Component {
         document.removeEventListener('keypress', this.keypressCallback);
     }
     
+    /* add movies to favorites */
     addFav(){
         const token = localStorage.getItem('token');
         const username = localStorage.getItem('user');

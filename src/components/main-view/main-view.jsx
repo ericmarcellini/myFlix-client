@@ -186,6 +186,7 @@ export class MainView extends React.Component {
               <ProfileView/>
             </Col>
           }} />
+
           </Row>
           </Router> 
     );
