@@ -22,6 +22,7 @@ export class ProfileView extends React.Component{
         if (accessToken !== null){
             this.getUser(accessToken);
         }
+        console.log(this.props.user)
     }
 
     // gets user 
@@ -119,11 +120,11 @@ export class ProfileView extends React.Component{
     }
 
     /* remove movie from favorite list*/
-    handleRemove(){        
+    handleRemove(Id){        
         const username = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-
-        axios.delete(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${this.props.movie._id}`,{}, {                                  
+        console.log(Id)
+        axios.delete(`https://myflixdb1112.herokuapp.com/users/${username}/movies/${Id}`, {                                  
          headers: { Authorization: `Bearer ${token}`}}
         ).then ((response) => {
            console.log(response);
@@ -157,15 +158,16 @@ export class ProfileView extends React.Component{
             <Row>
             {FavoriteMovies.map((movie)=> {
                 return (
-                <div key={movie._id}>   
-                    <Card key={movie._id}>
+                <div key={movie}>   
+                    <Card key={FavoriteMovies}>
                         <Card.Img variant='top' src={movie.ImagePath}/>
                             <Card.Body>
                                 <Link to={`/movies/${movie.Title}`}>
                                 <Card.Title>{movie.Title}</Card.Title>
+                                <Card.Title>{movie}</Card.Title>
                                 <Card.Text>{movie.Description}</Card.Text>
                                 </Link>
-                                <Button value ={movie._id}onClick={(e)=> this.handleRemove(movie, e)}>
+                                <Button value={movie}  onClick={ (e)=>{this.handleRemove(e.target.value)}}>
                                     Delete from favorites
                                 </Button>
                         </Card.Body>
