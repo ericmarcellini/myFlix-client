@@ -48,6 +48,9 @@ export class MainView extends React.Component {
     this.setState({
       user: authData.user.Username
     });
+    this.setState({
+      userData: authData.user
+    });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -183,7 +186,7 @@ export class MainView extends React.Component {
           <Route path="/profile"   render ={() => {
             if(!user) return <Redirect to= "/" />
             return <Col md ={8}>
-              <ProfileView/>
+              <ProfileView user ={this.state.userData}/>
             </Col>
           }} />
 
