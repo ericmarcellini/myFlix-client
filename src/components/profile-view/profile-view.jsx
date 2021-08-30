@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Button, Container, Card, Form, Nav, NavBar } from 'react-bootstrap';
+import {Row, Col, Button, Container, Card, Form, Nav, NavBar, CardDeck } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -142,7 +142,7 @@ export class ProfileView extends React.Component{
         const { FavoriteMovies, validated } = this.state;
         console.log(FavoriteMovies[0]?.Title)
         console.log(this.state.FavoriteMovies)
-        console.log(movie)
+        console.log(movies)
         is
         return (
         <Container>    
@@ -153,32 +153,29 @@ export class ProfileView extends React.Component{
                 <p>Username: {`${this.Username}`}</p>
                 <p>Birthday: {`${this.state.Birthday}`}</p>
                 <p>Favorite Movies:</p>
-                {`${this.state.FavoriteMovies}`}
-            </Col>
-        </Row>
-
-            {/* favorite movies */}
-        <Row>
-            {FavoriteMovies.map((movie)=> {
-                return (
-                <div key={movie}>   
-                    <Card>
-                        <Card.Img variant='top' src={FavoriteMovies.ImagePath}/>
-                            <Card.Body>
-                                <Link to={`/movies/${movie.Title}`}>
-                                <Card.Title>{movie.Title}</Card.Title>
-                                <Card.Title>{movie}</Card.Title>
-                                <Card.Text>{movie.Description}</Card.Text>
-                                </Link>
-                                <Button value={movie}  onClick={ (e)=>{this.handleRemove(e.target.value)}}>
+    
+                {FavoriteMovies.length > 0 && movies.map((movie)=> {
+                    if (movie._id === FavoriteMovies.find((favList)=> favList === movie._id)){
+                        return (
+                            <Card>
+                                <Card.Img variant='top' src={movie.ImagePath}/>
+                                <Card.Body>
+                                    <Card.Title>{movie.Title}</Card.Title>
+                                    <Card.Text>{movie.Description}</Card.Text>
+                                    <Link to={`/movies/${movie._id}`}>
+                                        <Button variant='link'>Open</Button>
+                                    </Link>
+                                <Button value={movie._id}  onClick={ (e)=>{this.handleRemove(e.target.value)}}>
                                     Delete from favorites
                                 </Button>
-                        </Card.Body>
-                    </Card>
-                </div>     
-            )})}
-        </Row>       
-
+                                </Card.Body>
+                            </Card>
+                        )
+                    }
+                })}
+            </Col>
+        </Row>   
+        
             {/* update form */} 
             <h1> Update Form</h1>
         <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthdate)}>
