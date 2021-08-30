@@ -22,7 +22,6 @@ export class ProfileView extends React.Component{
         if (accessToken !== null){
             this.getUser(accessToken);
         }
-        console.log(this.props.user)
     }
 
     // gets user 
@@ -128,6 +127,7 @@ export class ProfileView extends React.Component{
          headers: { Authorization: `Bearer ${token}`}}
         ).then ((response) => {
            console.log(response);
+           this.componentDidMount();
            alert('Movie has been successfully removed from favorites.')
     })
         .catch((e)=> {
@@ -137,11 +137,13 @@ export class ProfileView extends React.Component{
 
 
     render(){
-        const { username, Password, email, birthdate, movies} = this.props;
+        const { username, Password, email, birthdate, movies, user} = this.props;
         const { movie } = this.props;
-        const { Username, Email, Birthday} = this.props;
-        const { FavoriteMovies, validated } = this.state
-
+        const { FavoriteMovies, validated } = this.state;
+        console.log(FavoriteMovies[0]?.Title)
+        console.log(this.state.FavoriteMovies)
+        console.log(movie)
+        is
         return (
         <Container>    
             
@@ -150,17 +152,18 @@ export class ProfileView extends React.Component{
             <Col>
                 <p>Username: {`${this.Username}`}</p>
                 <p>Birthday: {`${this.state.Birthday}`}</p>
-                <p>Favorite Movies: </p>
+                <p>Favorite Movies:</p>
+                {`${this.state.FavoriteMovies}`}
             </Col>
         </Row>
 
             {/* favorite movies */}
-            <Row>
+        <Row>
             {FavoriteMovies.map((movie)=> {
                 return (
                 <div key={movie}>   
-                    <Card key={FavoriteMovies}>
-                        <Card.Img variant='top' src={movie.ImagePath}/>
+                    <Card>
+                        <Card.Img variant='top' src={FavoriteMovies.ImagePath}/>
                             <Card.Body>
                                 <Link to={`/movies/${movie.Title}`}>
                                 <Card.Title>{movie.Title}</Card.Title>
@@ -218,9 +221,19 @@ ProfileView.propTypes = {
         Username: PropTypes.string.isRequired,
         Email: PropTypes.string.isRequired,
         Birthdate: PropTypes.string,
-        FavoriteMovies: PropTypes.array,
+        FavoriteMovies: PropTypes.arrayOf(
+            PropTypes.shape({
+                _id: PropTypes.string.required,
+                Title: PropTypes.string.required,
+            })
+        )
     }),
-    movies: PropTypes.shape
+    movie: PropTypes.shape({
+        ImagePath: PropTypes.string.isRequired,
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+      }),
+ 
 };
 
 
