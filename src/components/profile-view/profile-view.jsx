@@ -96,9 +96,12 @@ export class ProfileView extends React.Component{
             console.log(response.data);
             console.log(data);
             console.log(user + " is updated");
+        
+        localStorage.setItem('user', this.state.Username);
+        window.open(`/profile}`, "_self")
         })
         .catch(function (error){
-            console.log(error.response.data);
+            console.log(error);
         });
     }
 
