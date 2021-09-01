@@ -90,13 +90,13 @@ const handleSubmit = (e) => {
       </Form.Group> 
 
       <span>
-        <Button type="submit">Submit</Button>
-        {' '}
+        <Button type="submit" onClick={handleSubmit}>Submit</Button> &nbsp;&nbsp;
         <Button variant="secondary" onClick={history.goBack}>Back</Button>
       </span>
     </Form >
   )
 } 
+
 
 SignupView.propTypes = {
     signup: PropTypes.shape({
