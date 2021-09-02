@@ -8,12 +8,12 @@ export class ProfileView extends React.Component{
     constructor() {
         super();
         this.state = {
-            Username: null,
-            Password: null,
-            Email: null,
-            Birthday: null,
+            Username: "",
+            Password: "",
+            Email: "",
+            Birthday: "",
             FavoriteMovies: [],
-            validated: null,
+            validated: "",
         }
     }
 
@@ -92,7 +92,7 @@ export class ProfileView extends React.Component{
         )
         .then((response) => {
             const data = response.data;
-            alert(user + " is updated!")
+            alert("User is updated!")
             console.log(response.data);
             console.log(data);
             console.log(user + " is updated");
@@ -141,19 +141,16 @@ export class ProfileView extends React.Component{
 
     render(){
         const { username, Password, email, birthdate, movies, user} = this.props;
-        const { movie } = this.props;
-        const { FavoriteMovies, validated } = this.state;
-        console.log(FavoriteMovies[0]?.Title)
-        console.log(this.state.FavoriteMovies)
-        console.log(movies)
-        is
+        const { movie} = this.props;
+        const { FavoriteMovies, validated, Birthday } = this.state;
+
         return (
         <Container>    
             
             {/* user info */}
         <Row>
             <Col>
-                <p>Username: {`${this.Username}`}</p>
+                <p>Username: {`${this.state.Username}`}</p>
                 <p>Birthday: {`${this.state.Birthday}`}</p>
                 <p>Favorite Movies:</p>
     
@@ -204,7 +201,7 @@ export class ProfileView extends React.Component{
                 <Form.Label>Birthdate</Form.Label>
                 <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => this.setBirthdate(e.target.value)} required />
             </Form.Group> 
-            <Button type="submit"> Submit </Button>
+            <Button type="submit"> Submit </Button>&nbsp;&nbsp;
            </Form>
 
             {/* delete user */}
