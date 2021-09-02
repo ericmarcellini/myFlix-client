@@ -95,10 +95,10 @@ export class ProfileView extends React.Component{
             alert("User is updated!")
             console.log(response.data);
             console.log(data);
-            console.log(user + " is updated");
+            console.log("User is updated");
         
         localStorage.setItem('user', this.state.Username);
-        window.open(`/profile}`, "_self")
+        window.open(`/profile`, "_self")
         })
         .catch(function (error){
             console.log(error);
