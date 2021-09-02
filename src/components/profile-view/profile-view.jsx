@@ -201,7 +201,7 @@ export class ProfileView extends React.Component{
                 <Form.Label>Birthdate</Form.Label>
                 <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => this.setBirthdate(e.target.value)} required />
             </Form.Group> 
-            <Button type="submit"> Submit </Button>&nbsp;&nbsp;
+            <Button type="submit" onClick={this.handleUpdateUser}> Submit </Button>&nbsp;&nbsp;
            </Form>
 
             {/* delete user */}
