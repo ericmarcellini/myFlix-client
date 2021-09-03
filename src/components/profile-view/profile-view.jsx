@@ -91,14 +91,14 @@ export class ProfileView extends React.Component{
             {headers: { Authorization: `Bearer ${token}` }}
         )
         .then((response) => {
-            const data = response.data;
-            alert("User is updated!")
-            console.log(response.data);
-            console.log(data);
-            console.log("User is updated");
-        
+            this.setState({
+                Username: response.data.Username,
+                Password: response.data.Password,
+                Email: response.data.Email,
+                Birthday: response.data.Birthday,
+        })
+        alert("User is updated!")
         localStorage.setItem('user', this.state.Username);
-        window.open(`/profile`, "_self")
         })
         .catch(function (error){
             console.log(error);
