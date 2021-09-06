@@ -91,13 +91,14 @@ export class ProfileView extends React.Component{
             {headers: { Authorization: `Bearer ${token}` }}
         )
         .then((response) => {
+            //const data = response.data;
+            alert("User is updated!");
             this.setState({
                 Username: response.data.Username,
                 Password: response.data.Password,
                 Email: response.data.Email,
                 Birthday: response.data.Birthday,
         })
-        alert("User is updated!")
         localStorage.setItem('user', this.state.Username);
         })
         .catch(function (error){
@@ -107,18 +108,30 @@ export class ProfileView extends React.Component{
 
     setUsername(input) {
         this.Username = input;
+        this.setState({
+         Username : input
+        })
     }
     
     setPassword(input) {
         this.Password = input;
+        this.setState({
+            Password : input
+        })
     }
     
     setEmail(input) {
         this.Email = input;
+        this.setState({
+            Email: input
+        })
     }
     
     setBirthdate(input) {
         this.Birthdate = input;
+        this.setState({
+            Birthdate: input
+        })
     }
 
     /* remove movie from favorite list*/
@@ -142,7 +155,7 @@ export class ProfileView extends React.Component{
     render(){
         const { username, Password, email, birthdate, movies, user} = this.props;
         const { movie} = this.props;
-        const { FavoriteMovies, validated, Birthday } = this.state;
+        const { FavoriteMovies, validated, Birthday, Birthdate } = this.state;
 
         return (
         <Container>    
@@ -151,7 +164,7 @@ export class ProfileView extends React.Component{
         <Row>
             <Col>
                 <p>Username: {`${this.state.Username}`}</p>
-                <p>Birthday: {`${this.state.Birthday}`}</p>
+                <p>Email: {`${this.state.Email}`}</p>
                 <p>Favorite Movies:</p>
     
                 {FavoriteMovies.length > 0 && movies.map((movie)=> {
