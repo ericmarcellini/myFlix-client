@@ -127,10 +127,10 @@ export class ProfileView extends React.Component{
         })
     }
     
-    setBirthdate(input) {
-        this.Birthdate = input;
+    setBirthday(input) {
+        this.Birthday = input;
         this.setState({
-            Birthdate: input
+            Birthday: input
         })
     }
 
@@ -153,9 +153,9 @@ export class ProfileView extends React.Component{
 
 
     render(){
-        const { username, Password, email, birthdate, movies, user} = this.props;
+        const { username, Password, email, movies, user} = this.props;
         const { movie} = this.props;
-        const { FavoriteMovies, validated, Birthday, Birthdate } = this.state;
+        const { FavoriteMovies, validated, Birthday, birthday} = this.state;
 
         return (
         <Container>    
@@ -165,6 +165,7 @@ export class ProfileView extends React.Component{
             <Col>
                 <p>Username: {`${this.state.Username}`}</p>
                 <p>Email: {`${this.state.Email}`}</p>
+                <p>Birthday: {`${this.state.Birthday}`}</p>
                 <p>Favorite Movies:</p>
     
                 {FavoriteMovies.length > 0 && movies.map((movie)=> {
@@ -191,7 +192,7 @@ export class ProfileView extends React.Component{
         
             {/* update form */} 
             <h1> Update Form</h1>
-        <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthdate)}>
+        <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthday)}>
             <Form.Group controlId="formGroupUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter your new username" value={username} onChange={e => this.setUsername(e.target.value)} required/>
@@ -210,9 +211,9 @@ export class ProfileView extends React.Component{
                 <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group controlId="formGroupBirthdate">
-                <Form.Label>Birthdate</Form.Label>
-                <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => this.setBirthdate(e.target.value)} required />
+            <Form.Group controlId="formGroupBirthday">
+                <Form.Label>Birthday</Form.Label>
+                <Form.Control type="date" placeholder="00-00-0000" value={birthday} onChange={e => this.setBirthday(e.target.value)} required />
             </Form.Group> 
             <Button type="submit" onClick={this.handleUpdateUser}> Submit </Button>&nbsp;&nbsp;
            </Form>
@@ -230,7 +231,7 @@ ProfileView.propTypes = {
     users: PropTypes.shape({
         Username: PropTypes.string.isRequired,
         Email: PropTypes.string.isRequired,
-        Birthdate: PropTypes.string,
+        Birthday: PropTypes.string,
         FavoriteMovies: PropTypes.arrayOf(
             PropTypes.shape({
                 _id: PropTypes.string.required,
