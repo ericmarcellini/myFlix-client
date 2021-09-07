@@ -9,7 +9,7 @@ export function SignupView(props){
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
-    const [ birthdate, setBirthdate ] = useState('');
+    const [ birthday, setBirthday ] = useState('');
 
 
 const handleSubmit = (e) => {
@@ -20,7 +20,7 @@ const handleSubmit = (e) => {
             Username: username,
             Password: password,
             Email: email,
-            Birthdate: birthdate
+            Birthday: birthday
           })
           .then(response => {
             const data = response.data;
@@ -32,8 +32,8 @@ const handleSubmit = (e) => {
             console.log('error registering the user')
           });
 
-        console.log(username, password, email, birthdate);
-        props.onSignup(username, password, email, birthdate);
+        console.log(username, password, email, birthday);
+        props.onSignup(username, password, email, birthday);
     };
   };
 
@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
     const usernameError = {};
     const emailError = {};
     const passwordError = {};
-    const birthdateError = {};
+    const birthdayError = {};
 
     let isValid = true;
     if (username.length < 6 ){
@@ -57,8 +57,8 @@ const handleSubmit = (e) => {
       passwordError.passwordBad = 'Your password must be at least 6 characters long.'
       isValid = false;
     }
-    else if (birthdate === '') {
-      birthdateError.birthdateBad = 'Please enter your birthdate.'
+    else if (birthday === '') {
+      birthdayError.birthdayBad = 'Please enter your birthday.'
       isValid = false;
     }
     return isValid;
@@ -85,9 +85,9 @@ const handleSubmit = (e) => {
         <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
       </Form.Group>
 
-       <Form.Group controlId="formGroupBirthdate">
-        <Form.Label>Birthdate</Form.Label>
-        <Form.Control type="date" placeholder="00-00-0000" value={birthdate} onChange={e => setBirthdate(e.target.value)} required />
+       <Form.Group controlId="formGroupBirthday">
+        <Form.Label>Birthday</Form.Label>
+        <Form.Control type="date" placeholder="00-00-0000" value={birthday} onChange={e => setBirthday(e.target.value)} required />
       </Form.Group> 
 
       <span>
