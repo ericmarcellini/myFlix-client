@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -135,7 +136,12 @@ export class MainView extends React.Component {
     return (
       <Router>
         <NavbarView/>
-
+        <div>
+          {this.onLoggedIn
+          ? <Button variant="outline-danger" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+          : <LoginView/>
+          }
+        </div>
         <Row>
           <Route exact path="/" render={() => {
             if (!user) return <Col>

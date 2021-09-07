@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Button, Container, Card, Form, Nav, NavBar, CardDeck } from 'react-bootstrap';
+import {Row, Col, Button, Container, Card, Form, Nav, NavBar, CardDeck, ListGroup, ListGroupItem, Accordion } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -159,36 +159,44 @@ export class ProfileView extends React.Component{
 
         return (
         <Container>    
-            <Button variant="outline-danger" onClick={() => { this.onLoggedOut() }}>Logout</Button>
             {/* user info */}
-        <Row>
-            <Col>
-                <p>Username: {`${this.state.Username}`}</p>
-                <p>Email: {`${this.state.Email}`}</p>
-                <p>Birthday: {`${this.state.Birthday}`}</p>
-                <p>Favorite Movies:</p>
+            <Row>
+                <Col>
+                <Card style={{ width: '22rem' }}>
+                <Card.Header>Your Information:</Card.Header>
+                    <ListGroup variant="flush">
+                    <ListGroup.Item><p>Username: {`${this.state.Username}`}</p></ListGroup.Item>
+                    <ListGroup.Item><p>Email: {`${this.state.Email}`}</p></ListGroup.Item>
+                    <ListGroup.Item><p>Birthday: {`${this.state.Birthday}`}</p></ListGroup.Item>
+                </ListGroup>
+                </Card>
+                <p>Favorite Movies:</p> 
+                </Col>
+            </Row>
+            <Row>
     
                 {FavoriteMovies.length > 0 && movies.map((movie)=> {
                     if (movie._id === FavoriteMovies.find((favList)=> favList === movie._id)){
                         return (
-                            <Card>
+                        <Col md={4}>    
+                            <Card style={{width: '15rem'}} key={movie._id}>
                                 <Card.Img variant='top' src={movie.ImagePath}/>
                                 <Card.Body>
                                     <Card.Title>{movie.Title}</Card.Title>
                                     <Card.Text>{movie.Description}</Card.Text>
                                     <Link to={`/movies/${movie._id}`}>
-                                        <Button variant='link'>Open</Button>
+                                        <Button variant='secondary'>Info</Button>&nbsp;&nbsp;
                                     </Link>
-                                <Button value={movie._id}  onClick={ (e)=>{this.handleRemove(e.target.value)}}>
-                                    Delete from favorites
+                                <Button value={movie._id}  variant='danger' onClick={ (e)=>{this.handleRemove(e.target.value)}}>
+                                    Remove
                                 </Button>
                                 </Card.Body>
                             </Card>
+                        </Col>
                         )
                     }
                 })}
-            </Col>
-        </Row>   
+            </Row>    
         
             {/* update form */} 
             <h1> Update Form</h1>
