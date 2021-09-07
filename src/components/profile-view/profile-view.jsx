@@ -159,7 +159,7 @@ export class ProfileView extends React.Component{
 
         return (
         <Container>    
-            
+            <Button variant="outline-danger" onClick={() => { this.onLoggedOut() }}>Logout</Button>
             {/* user info */}
         <Row>
             <Col>

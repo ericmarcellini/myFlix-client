@@ -135,7 +135,7 @@ export class MainView extends React.Component {
     return (
       <Router>
         <NavbarView/>
-        <button onClick={() => { this.onLoggedOut() }}>Logout</button>
+
         <Row>
           <Route exact path="/" render={() => {
             if (!user) return <Col>
