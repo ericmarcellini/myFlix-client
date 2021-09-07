@@ -10,7 +10,7 @@ export function SignupView(props){
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ birthday, setBirthday ] = useState('');
-
+    const validated = useState(null);
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,24 +65,26 @@ const handleSubmit = (e) => {
   };
 
   return (
-    <Form className="RegForm" onSubmit={handleSubmit}>
+    <Form className="RegForm" onSubmit={handleSubmit} noValidate validated={validated}>
 
       <Form.Group controlId="formGroupUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} required />
-        <Form.Control.Feedback type="invalid">Please provide a valid username.</Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">Please provide a valid username, 6 characters or more.</Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group controlId="formGroupPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <Form.Control type="password" placeholder="Enter a Password" value={password} onChange={e => setPassword(e.target.value)} required />
         <Form.Control.Feedback type="invalid">Please provide a valid password.</Form.Control.Feedback>
+        <Form.Text>Password must be at least 6 characters long</Form.Text>
       </Form.Group>
 
       <Form.Group controlId="formGroupEmail">
         <Form.Label>Email</Form.Label>
-        <Form.Control type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+        <Form.Control type="email" placeholder="example@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
         <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
+        <Form.Text>We will never share your information</Form.Text>
       </Form.Group>
 
        <Form.Group controlId="formGroupBirthday">
