@@ -13,7 +13,7 @@ export class ProfileView extends React.Component{
             Email: "",
             Birthday: "",
             FavoriteMovies: [],
-            validated: "",
+            validated: "null",
         }
     }
 
@@ -184,7 +184,6 @@ export class ProfileView extends React.Component{
                                 <Card.Img variant='top' src={movie.ImagePath}/>
                                 <Card.Body>
                                     <Card.Title>{movie.Title}</Card.Title>
-                                    <Card.Text>{movie.Description}</Card.Text>
                                     <Link to={`/movies/${movie._id}`}>
                                         <Button variant='secondary'>Info</Button>&nbsp;&nbsp;
                                     </Link>
@@ -201,23 +200,20 @@ export class ProfileView extends React.Component{
         
             {/* update form */} 
             <h1> Update Form</h1>
-        <Form className="updateForm" noValidate validated={validated}  onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthday)}>
+        <Form noValidate validated={validated} className="updateForm"   onSubmit={(e) => this.handleUpdateUser(e, this.Username, this.Password, this.Email, this.Birthday)}>
             <Form.Group controlId="formGroupUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter your new username" value={username} onChange={e => this.setUsername(e.target.value)} required/>
-                <Form.Control.Feedback type="invalid">Please provide a valid username.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="New Password" value={Password} onChange={e => this.setPassword(e.target.value)} required />
-                <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" placeholder="New Email" value={email} onChange={e => this.setEmail(e.target.value)} required />
-                <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupBirthday">
