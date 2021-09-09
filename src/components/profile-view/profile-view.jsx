@@ -64,7 +64,7 @@ export class ProfileView extends React.Component{
  }
 
     // update user
-    handleUpdateUser = (e, /*updateUsername, updatePassword, updateEmail, updateBirthday*/) => {
+    handleUpdateUser = (e) => {
         this.setState({
             validated: null
         });
@@ -134,6 +134,7 @@ export class ProfileView extends React.Component{
         })
     }
 
+    
     /* remove movie from favorite list*/
     handleRemove(Id){        
         const username = localStorage.getItem('user');
