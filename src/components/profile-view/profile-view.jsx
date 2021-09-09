@@ -204,16 +204,25 @@ export class ProfileView extends React.Component{
             <Form.Group controlId="formGroupUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter your new username" value={username} onChange={e => this.setUsername(e.target.value)} required/>
+                <Form.Text className="text-muted">
+                    Username has to be 6+ Characters
+                </Form.Text>
+                <Form.Control.Feedback type="invalid">Please provide a valid username.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="New Password" value={Password} onChange={e => this.setPassword(e.target.value)} required />
+                <Form.Text className="text-muted">
+                    Password has to be 6+ Characters
+                </Form.Text>
+                <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" placeholder="New Email" value={email} onChange={e => this.setEmail(e.target.value)} required />
+                <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGroupBirthday">
