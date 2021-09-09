@@ -64,7 +64,7 @@ export class ProfileView extends React.Component{
  }
 
     // update user
-    handleUpdateUser = (e) => {
+    handleUpdateUser = (e, /*updateUsername, updatePassword, updateEmail, updateBirthday*/) => {
         this.setState({
             validated: null
         });
@@ -83,12 +83,12 @@ export class ProfileView extends React.Component{
         const token = localStorage.getItem('token')
 
         axios.put(`https://myflixdb1112.herokuapp.com/users/${username}`,{
-                Username: this.state.Username,
-                Password: this.state.Password,
-                Email: this.state.Email,
-                Birthday: this.state.Birthday,
-            },
-            {headers: { Authorization: `Bearer ${token}` }}
+            Username: this.state.Username,
+            Password: this.state.Password,
+            Email: this.state.Email,
+            Birthday: this.state.Birthday,
+        },
+        {headers: { Authorization: `Bearer ${token}` }}  
         )
         .then((response) => {
             //const data = response.data;
@@ -97,7 +97,7 @@ export class ProfileView extends React.Component{
                 Username: response.data.Username,
                 Password: response.data.Password,
                 Email: response.data.Email,
-                Birthday: response.data.Birthday,
+                Birthday: response.data.Birthday
         })
         localStorage.setItem('user', this.state.Username);
         })
@@ -178,7 +178,7 @@ export class ProfileView extends React.Component{
                 {FavoriteMovies.length > 0 && movies.map((movie)=> {
                     if (movie._id === FavoriteMovies.find((favList)=> favList === movie._id)){
                         return (
-                        <Col md={4}>    
+                        <Col md={6}>    
                             <Card style={{width: '15rem'}} key={movie._id}>
                                 <Card.Img variant='top' src={movie.ImagePath}/>
                                 <Card.Body>
