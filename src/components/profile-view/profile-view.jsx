@@ -3,12 +3,14 @@ import {Row, Col, Button, Container, Card, Form, Nav, NavBar, CardDeck, ListGrou
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { showUser } from '../../actions/actions';
 
 export class ProfileView extends React.Component{
     constructor() {
         super();
         this.state = {
-            Username: "",
+            Username:"",
             Password: "",
             Email: "",
             Birthday: "",
@@ -32,7 +34,7 @@ export class ProfileView extends React.Component{
         })
           .then(response => {
             this.setState({
-              Username: response.data.Username,
+              Username: response.data.Username,  
               Password: response.data.Password,
               Email: response.data.Email,
               Birthday: response.data.Birthday,
@@ -154,7 +156,7 @@ export class ProfileView extends React.Component{
 
 
     render(){
-        const { username, Password, email, movies, user} = this.props;
+        const { username, Password, email, movies} = this.props;
         const { movie} = this.props;
         const { FavoriteMovies, validated, Birthday, birthday} = this.state;
 
@@ -241,6 +243,11 @@ export class ProfileView extends React.Component{
     }
 }
 
+let mapStateToProps = state => {
+    return {user: state.user,
+            movies: state.movies}
+}
+
 ProfileView.propTypes = {
     users: PropTypes.shape({
         Username: PropTypes.string.isRequired,
@@ -262,4 +269,4 @@ ProfileView.propTypes = {
 };
 
 
-export default ProfileView;
+export default connect(mapStateToProps,{showUser}) (ProfileView);
