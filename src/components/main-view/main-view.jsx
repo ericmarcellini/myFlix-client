@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-import { MovieCard } from '../movie-card/movie-card';
+// import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
@@ -17,12 +17,15 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { NavbarView} from '../navbar-view/navbar-view';
 
-export class MainView extends React.Component {
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+
+import { connect } from 'react-redux';
+class MainView extends React.Component {
 
   constructor(){
     super();
     this.state = {
-      movies: [],
       selectedMovie: null,
       user: null,
       userData: null
@@ -80,14 +83,11 @@ export class MainView extends React.Component {
     })
     
     .then(response => {
-      // assign the result to the state
-      this.setState({
-        movies: response.data
-      });
-    })  
-      .catch(function (error){
-        console.log(error);
-      });   
+      this.props.setMovies(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   // gets specific users
@@ -131,7 +131,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies } = this.props
+    const { user } = this.state;
 
     return (
       <Router>
@@ -148,12 +149,8 @@ export class MainView extends React.Component {
                <LoginView onLoggedIn={user => this.onLoggedIn(user)} /> 
             </Col> 
             if (movies.length === 0) return <div className="main-view" />;
-            return movies.map(m => (
-            <Col md={3} key={m._id}>
-              <MovieCard movie={m} />
-            </Col>
-            ))
-            }} />
+            return <MoviesList movies={movies}/>;
+          }} />
 
           <Route path="/signup" render={() => {
             if (user) return <Redirect to="/" />
@@ -195,6 +192,8 @@ export class MainView extends React.Component {
     );
   }
 }
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
 
-
-export default MainView;
+export default connect(mapStateToProps, { setMovies } )(MainView);
