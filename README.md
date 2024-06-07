@@ -1,4 +1,4 @@
-# myFlix-client (ReactJS Version)
+# myFlix-client (ReactJS Version) - Project Restarted in 2024 :>
 myFlix is an IMDb inspired website that lets users access information on movies, directors and genres so that they can learn more about movies they've watched or are interested in.
 
 It also allows you to create a profile so you can save your favorite movies.
