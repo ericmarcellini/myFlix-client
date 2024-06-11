@@ -1,0 +1,131 @@
+// Variables for consistent theming
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$text-color: #212529;
+$border-color: #dee2e6;
+$border-radius: 5px;
+$padding: 20px;
+$margin: 20px;
+
+// General Styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+  color: $text-color;
+}
+
+// Navbar Styles
+.navbar-view {
+  background-color: $primary-color;
+  color: white;
+  padding: $padding;
+
+  .navbar-brand {
+    color: white;
+    font-weight: bold;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .nav-link {
+    color: white;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+// MainView Styles
+.main-view {
+  .logout-button {
+    margin: $margin;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: $padding / 2;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// MovieList Styles
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .movie-card {
+    background-color: white;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    margin: $margin / 2;
+    padding: $padding;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 18rem;
+
+    .movie-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: $margin / 2;
+    }
+
+    .movie-description {
+      font-size: 1rem;
+      color: $secondary-color;
+    }
+
+    .movie-genre {
+      font-size: 0.875rem;
+      font-style: italic;
+    }
+  }
+}
+
+// DirectorView Styles
+.director-view {
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: $padding;
+  margin: $margin;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .label {
+    font-weight: bold;
+    color: $text-color;
+    display: inline-block;
+    width: 100px;
+  }
+
+  .value {
+    color: $secondary-color;
+  }
+
+  .btn {
+    margin-top: $margin;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: $padding / 2;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Other component styles can follow similar patterns
