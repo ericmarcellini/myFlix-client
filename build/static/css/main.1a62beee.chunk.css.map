@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.scss"],"names":[],"mappings":"AAEA,SACI,aAHI","file":"main.1a62beee.chunk.css","sourcesContent":["$color: steelblue;\n\n.my-flix {\n    color: $color;\n}"]}
